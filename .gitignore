@@ -1,0 +1,36 @@
+# 虚幻核心生成目录（限定 Main 下）
+Main/Binaries/
+Main/Intermediate/
+Main/Saved/
+Main/DerivedDataCache/
+Main/Build/
+Main/Packaged/
+# 若你的虚幻是「引擎源码版」（Engine 文件夹在 Main 里），加上这行；安装版不用加
+# Main/Engine/
+
+# 虚幻编辑器配置（限定 Main 下）
+Main/.ue4editor
+Main/.ue5editor
+Main/UserSettings/
+Main/*.sln.docstates
+
+# 第三方工具配置（限定 Main 下的开发工具文件）
+Main/.vs/
+Main/.vscode/
+Main/*.code-workspace
+Main/.idea/
+Main/*.suo
+Main/*.sdf
+Main/*.opensdf
+Main/*.VC.db
+
+# 日志和临时文件（限定 Main 下）
+Main/*.log
+Main/*.dmp
+Main/*.bak
+Main/*.tmp
+Main/*.swp
+
+# 系统临时文件（全局忽略，避免不同目录的系统文件被上传）
+.DS_Store  # Mac
+Thumbs.db  # Windows

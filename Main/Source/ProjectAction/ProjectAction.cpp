@@ -1,0 +1,8 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+#include "ProjectAction.h"
+#include "Modules/ModuleManager.h"
+
+IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, ProjectAction, "ProjectAction" );
+
+DEFINE_LOG_CATEGORY(LogProjectAction)
