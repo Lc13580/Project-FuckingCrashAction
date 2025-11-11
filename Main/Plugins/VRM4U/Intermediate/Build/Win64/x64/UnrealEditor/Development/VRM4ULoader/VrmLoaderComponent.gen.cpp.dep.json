@@ -1,0 +1,28 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4uloader\\uht\\vrmloadercomponent.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\intermediate\\build\\win64\\x64\\projectactioneditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\vrm4uloader\\definitions.vrm4uloader.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4uloader\\public\\vrmloadercomponent.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4uloader\\uht\\vrmloadercomponent.generated.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4u\\public\\vrmassetlistobject.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\uobject\\noexporttypes.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\uobject\\propertyaccessutil.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\serialization\\testundeclaredscriptstructobjectreferences.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\math\\unitconversion.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\math\\unitconversion.inl",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\internationalization\\polyglottextdata.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4u\\public\\vrmimportmaterialset.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrmimportmaterialset.generated.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4u\\public\\vrmutil.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\misc\\engineversioncomparison.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrmutil.generated.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrmassetlistobject.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

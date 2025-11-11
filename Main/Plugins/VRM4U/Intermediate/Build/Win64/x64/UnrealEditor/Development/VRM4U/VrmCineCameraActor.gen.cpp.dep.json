@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrmcinecameraactor.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\intermediate\\build\\win64\\x64\\projectactioneditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\vrm4u\\definitions.vrm4u.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4u\\public\\vrmcinecameraactor.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\cinematiccamera\\public\\cinecameraactor.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\camera\\cameraactor.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\cameraactor.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\cinematiccamera\\uht\\cinecameraactor.generated.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrmcinecameraactor.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

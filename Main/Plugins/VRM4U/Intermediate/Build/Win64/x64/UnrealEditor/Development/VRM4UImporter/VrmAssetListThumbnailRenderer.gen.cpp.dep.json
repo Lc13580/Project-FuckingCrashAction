@@ -1,0 +1,32 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4uimporter\\uht\\vrmassetlistthumbnailrenderer.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\intermediate\\build\\win64\\x64\\projectactioneditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\vrm4uimporter\\definitions.vrm4uimporter.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4uimporter\\private\\vrmassetlistthumbnailrenderer.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\editor\\unrealed\\classes\\thumbnailrendering\\texturethumbnailrenderer.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\editor\\unrealed\\classes\\thumbnailrendering\\thumbnailrenderer.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealed\\uht\\thumbnailrenderer.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealed\\uht\\texturethumbnailrenderer.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\misc\\engineversioncomparison.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\assettools\\public\\assettypeactions_base.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\assettools\\public\\iassettools.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\assettools\\public\\assettypecategories.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\assettools\\public\\iassettypeactions.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\merge\\public\\merge.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\editor\\unrealed\\classes\\thumbnailrendering\\thumbnailmanager.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealed\\uht\\thumbnailmanager.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\editor\\unrealed\\public\\automatedassetimportdata.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\unrealed\\uht\\automatedassetimportdata.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\assettools\\uht\\iassettools.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\developer\\assettools\\public\\assettoolsmodule.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\editor\\unrealed\\public\\toolkits\\simpleasseteditor.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4uimporter\\uht\\vrmassetlistthumbnailrenderer.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

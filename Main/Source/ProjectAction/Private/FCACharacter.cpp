@@ -1,0 +1,113 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "FCACharacter.h"
+#include "EnhancedInputComponent.h"               
+#include "EnhancedInputSubsystems.h" 
+
+
+// Sets default values
+AFCACharacter::AFCACharacter()
+{
+ 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = false;
+}
+
+void AFCACharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	AddMappingContext_ForLocalPlayer();
+}
+
+void AFCACharacter::AddMappingContext_ForLocalPlayer()
+{
+
+	// 取到玩家控制器 → 本地玩家对象 → Enhanced Input 本地子系统
+	if (APlayerController* PC = Cast<APlayerController>(Controller))
+	{
+		if (ULocalPlayer* LP = PC->GetLocalPlayer())
+		{
+			if (UEnhancedInputLocalPlayerSubsystem* Subsys = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(LP))
+			{
+				// 可选：清理旧的映射，避免与其他状态/界面冲突
+				// 单机项目里你也可以不清理，只要确保优先级合理
+				Subsys->ClearAllMappings();
+
+				if (IMC_Default)
+				{
+					// Priority=0：默认优先级；如果你有瞄准/载具/菜单等上下文，可用更高或更低的优先级切换
+					Subsys->AddMappingContext(IMC_Default, /*Priority*/0);
+				}
+			}
+		}
+	}
+}
+
+void AFCACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	// 【单机本地】把输入动作（UInputAction）绑定到 C++ 回调
+	// 注意：需要 EnhancedInputComponent 才能 BindAction
+	if (UEnhancedInputComponent* EIC = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		// 连续型输入（摇杆/WSAD）用 Triggered，按键按住每帧触发
+		if (IA_Move) EIC->BindAction(IA_Move, ETriggerEvent::Triggered, this, &AFCACharacter::OnMove);
+		if (IA_Look) EIC->BindAction(IA_Look, ETriggerEvent::Triggered, this, &AFCACharacter::OnLook);
+
+		// 离散型输入（按一下）用 Started；也可按需要用 Completed/Triggered
+		//if (IA_Jump) EIC->BindAction(IA_Jump, ETriggerEvent::Started,   this, &AMyCharacter::OnJumpPressed);
+		//if (IA_AttackLight) EIC->BindAction(IA_AttackLight, ETriggerEvent::Started, this, &AMyCharacter::OnAttackLight);
+	}
+
+	
+	// 如果 EIC 是空的，说明你的项目没启用 Enhanced Input 或 PlayerInputComponent 不是增强版
+	// 记得在项目设置里启用 Enhanced Input，并在 PawnClass 使用 EnhancedInputComponent
+}
+
+
+void AFCACharacter::OnLook(const FInputActionValue& Val)
+{
+	const FVector2D Axis = Val.Get<FVector2D>();
+
+	// —— C++：实际旋转相机/控制器 —— 
+	if (Controller)
+	{
+		// 约定：Axis.X 为水平，Axis.Y 为垂直
+		AddControllerYawInput(Axis.X);
+		AddControllerPitchInput(Axis.Y);
+	}
+
+	// —— 蓝图：表现层（比如相机抖动、UI 准星等）——
+	BP_OnLook(Axis);
+}
+
+
+void AFCACharacter::OnMove(const FInputActionValue& Val)
+{
+	// 从输入值里取到 2D 向量（X=左右，Y=前后）
+	const FVector2D Axis = Val.Get<FVector2D>();
+
+	// // —— C++：做“实质的位移”或设置 CharacterMovement —— 
+	// // 单机项目通常直接移动（示例：相对当前朝向前后/左右）
+	// if (Controller)
+	// {
+	// 	if (Axis.Y != 0.f)
+	// 	{
+	// 		const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+	// 		AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::X), Axis.Y);
+	// 	}
+	// 	if (Axis.X != 0.f)
+	// 	{
+	// 		const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+	// 		AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y), Axis.X);
+	// 	}
+	// }
+
+	//实际移动打算交给动画蓝图里面的Lyra系统处理
+
+	// —— 蓝图：做“表现层”（动画参数/BlendSpace/足底特效等）——
+	BP_OnMove(Axis); // 不实现也不会崩（空实现），实现了就能驱动动画蓝图参数
+}

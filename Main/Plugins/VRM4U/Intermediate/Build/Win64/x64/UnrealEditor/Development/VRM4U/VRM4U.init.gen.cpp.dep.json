@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\vrm4u.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\intermediate\\build\\win64\\x64\\projectactioneditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\vrm4u\\definitions.vrm4u.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

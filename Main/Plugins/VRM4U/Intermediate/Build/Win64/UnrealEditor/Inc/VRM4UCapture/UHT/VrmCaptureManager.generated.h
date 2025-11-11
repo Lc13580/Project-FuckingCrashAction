@@ -1,0 +1,70 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "VrmCaptureManager.h"
+
+#ifdef VRM4UCAPTURE_VrmCaptureManager_generated_h
+#error "VrmCaptureManager.generated.h already included, missing '#pragma once' in VrmCaptureManager.h"
+#endif
+#define VRM4UCAPTURE_VrmCaptureManager_generated_h
+
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+
+class UObject;
+class UVrmMocopiReceiver;
+
+// ********** Begin Class UVrmCaptureManager *******************************************************
+#define FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execCreateVrmMocopiReceiver);
+
+
+VRM4UCAPTURE_API UClass* Z_Construct_UClass_UVrmCaptureManager_NoRegister();
+
+#define FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUVrmCaptureManager(); \
+	friend struct Z_Construct_UClass_UVrmCaptureManager_Statics; \
+	static UClass* GetPrivateStaticClass(); \
+	friend VRM4UCAPTURE_API UClass* Z_Construct_UClass_UVrmCaptureManager_NoRegister(); \
+public: \
+	DECLARE_CLASS2(UVrmCaptureManager, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/VRM4UCapture"), Z_Construct_UClass_UVrmCaptureManager_NoRegister) \
+	DECLARE_SERIALIZER(UVrmCaptureManager)
+
+
+#define FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UVrmCaptureManager(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	/** Deleted move- and copy-constructors, should never be used */ \
+	UVrmCaptureManager(UVrmCaptureManager&&) = delete; \
+	UVrmCaptureManager(const UVrmCaptureManager&) = delete; \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UVrmCaptureManager); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UVrmCaptureManager); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UVrmCaptureManager) \
+	NO_API virtual ~UVrmCaptureManager();
+
+
+#define FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_10_PROLOG
+#define FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_INCLASS_NO_PURE_DECLS \
+	FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h_13_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+class UVrmCaptureManager;
+
+// ********** End Class UVrmCaptureManager *********************************************************
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_UE_Projects_Project_FuckingCrashAction_Main_Plugins_VRM4U_Source_VRM4UCapture_Public_VrmCaptureManager_h
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

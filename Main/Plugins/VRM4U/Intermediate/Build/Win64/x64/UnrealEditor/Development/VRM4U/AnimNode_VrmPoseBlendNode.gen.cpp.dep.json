@@ -1,0 +1,26 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\animnode_vrmposeblendnode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\intermediate\\build\\win64\\x64\\projectactioneditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\vrm4u\\definitions.vrm4u.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\source\\vrm4u\\public\\animnode_vrmposeblendnode.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\animgraphruntime\\public\\animnodes\\animnode_poseblendnode.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\animgraphruntime\\public\\animnodes\\animnode_posehandler.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\animation\\poseasset.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\poseasset.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\animation\\animnode_assetplayerbase.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\animation\\animnode_relevantassetplayerbase.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\animnode_relevantassetplayerbase.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\animnode_assetplayerbase.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\animgraphruntime\\uht\\animnode_posehandler.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\animgraphruntime\\uht\\animnode_poseblendnode.generated.h",
+            "d:\\epic games\\engine\\ue_5.6\\engine\\source\\runtime\\core\\public\\misc\\engineversioncomparison.h",
+            "d:\\epic games\\ue_projects\\project-fuckingcrashaction\\main\\plugins\\vrm4u\\intermediate\\build\\win64\\unrealeditor\\inc\\vrm4u\\uht\\animnode_vrmposeblendnode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
