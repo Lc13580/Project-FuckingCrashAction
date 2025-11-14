@@ -2,6 +2,7 @@
 	"RemapUnityFiles": 
 	{
 		"Module.VRM4U.1.cpp.obj": [
+			"AnimNode_VrmConstraint.cpp.obj",
 			"AnimNode_VrmConstraint.gen.cpp.obj",
 			"AnimNode_VrmCopyHandBone.gen.cpp.obj",
 			"AnimNode_VrmModifyBoneDynamic.gen.cpp.obj",
@@ -18,15 +19,11 @@
 			"VRM4U_AnimSubsystem.gen.cpp.obj",
 			"VrmAnimInstance.gen.cpp.obj",
 			"VrmAnimInstanceCopy.gen.cpp.obj",
-			"VrmAnimInstanceRetargetFromMannequin.gen.cpp.obj"
-		],
-		"Module.VRM4U.2.cpp.obj": [
+			"VrmAnimInstanceRetargetFromMannequin.gen.cpp.obj",
 			"VrmAnimInstanceTemplate.gen.cpp.obj",
 			"VrmAssetListObject.gen.cpp.obj",
 			"VrmAssetUserData.gen.cpp.obj",
-			"VrmBPFunctionLibrary.gen.cpp.obj"
-		],
-		"Module.VRM4U.3.cpp.obj": [
+			"VrmBPFunctionLibrary.gen.cpp.obj",
 			"VrmCameraCheckComponent.gen.cpp.obj",
 			"VrmCineCameraActor.gen.cpp.obj",
 			"VrmCineCameraComponent.gen.cpp.obj",
@@ -42,11 +39,10 @@
 			"VrmNetworkBPFunctionLibrary.gen.cpp.obj",
 			"VrmPoseableMeshComponent.gen.cpp.obj",
 			"VrmRuntimeSettings.gen.cpp.obj",
-			"VrmUtil.gen.cpp.obj"
+			"VrmUtil.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj"
 		],
-		"Module.VRM4U.4.cpp.obj": [
-			"PerModuleInline.gen.cpp.obj",
-			"AnimNode_VrmConstraint.cpp.obj",
+		"Module.VRM4U.2.cpp.obj": [
 			"AnimNode_VrmCopyHandBone.cpp.obj",
 			"AnimNode_VrmModifyBoneDynamic.cpp.obj",
 			"AnimNode_VrmModifyBoneList.cpp.obj",

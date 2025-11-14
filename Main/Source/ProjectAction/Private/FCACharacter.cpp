@@ -4,6 +4,8 @@
 #include "FCACharacter.h"
 #include "EnhancedInputComponent.h"               
 #include "EnhancedInputSubsystems.h" 
+#include "GameFramework/CharacterMovementComponent.h"
+#include "HAL/PreprocessorHelpers.h"
 
 
 // Sets default values
@@ -11,6 +13,50 @@ AFCACharacter::AFCACharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+	// 角色不跟随控制器旋转（不然你一转相机，角色也跟着转）
+	bUseControllerRotationYaw   = false;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll  = false;
+	
+	
+	
+	// 创建弹簧臂组件
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringComp"));
+	SpringArm->SetupAttachment(RootComponent);
+	// 使用Pawn控制旋转
+	SpringArm->bUsePawnControlRotation = true;
+
+
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
+	FollowCamera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+	FollowCamera->bUsePawnControlRotation = false;
+
+	// 让角色由“移动方向”决定朝向（常见的第三人称手感）
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 540.f, 0.f);
+	
+	// SpringArm 用控制器旋转（相机跟随控制器转动来“绕角色转”）
+	if (SpringArm)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("SpringArm Founded"));
+		SpringArm->bUsePawnControlRotation = true;
+		// 可选：平滑/限制
+		SpringArm->bEnableCameraLag = true;
+		SpringArm->CameraLagSpeed   = 12.f;     // 平滑跟随
+		SpringArm->bInheritPitch = true;
+		SpringArm->bInheritYaw   = true;
+		SpringArm->bInheritRoll  = false;       // 通常不需要 Roll
+	}
+	
+	//
+
+	// 摄像机本体不再叠加控制器旋转（否则会重复）
+	if (FollowCamera)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("FollowCamera Founded"));
+		FollowCamera->bUsePawnControlRotation = true;
+	}
 }
 
 void AFCACharacter::PossessedBy(AController* NewController)
@@ -46,9 +92,7 @@ void AFCACharacter::AddMappingContext_ForLocalPlayer()
 void AFCACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
 	// 【单机本地】把输入动作（UInputAction）绑定到 C++ 回调
 	// 注意：需要 EnhancedInputComponent 才能 BindAction
 	if (UEnhancedInputComponent* EIC = Cast<UEnhancedInputComponent>(PlayerInputComponent))
@@ -72,6 +116,9 @@ void AFCACharacter::OnLook(const FInputActionValue& Val)
 {
 	const FVector2D Axis = Val.Get<FVector2D>();
 
+	
+
+	
 	// —— C++：实际旋转相机/控制器 —— 
 	if (Controller)
 	{
@@ -90,21 +137,26 @@ void AFCACharacter::OnMove(const FInputActionValue& Val)
 	// 从输入值里取到 2D 向量（X=左右，Y=前后）
 	const FVector2D Axis = Val.Get<FVector2D>();
 
-	// // —— C++：做“实质的位移”或设置 CharacterMovement —— 
-	// // 单机项目通常直接移动（示例：相对当前朝向前后/左右）
-	// if (Controller)
-	// {
-	// 	if (Axis.Y != 0.f)
-	// 	{
-	// 		const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
-	// 		AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::X), Axis.Y);
-	// 	}
-	// 	if (Axis.X != 0.f)
-	// 	{
-	// 		const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
-	// 		AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y), Axis.X);
-	// 	}
-	// }
+	// —— C++：做“实质的位移”或设置 CharacterMovement —— 
+	// 单机项目通常直接移动（示例：相对当前朝向前后/左右）
+	if (Controller)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("OnMove executed. Axis.x = %f, Axis.y = %f"), Axis.X, Axis.Y);
+
+		
+		if (Axis.Y != 0.f)
+		{
+			const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+
+			//todo AddMovementInput 这里我觉得ScaleValue直接给了Axis没有标准化的值是导致滑步的重要原因，需要排查
+			AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::X), Axis.Y);
+		}
+		if (Axis.X != 0.f)
+		{
+			const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+			AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y), Axis.X);
+		}
+	}
 
 	//实际移动打算交给动画蓝图里面的Lyra系统处理
 

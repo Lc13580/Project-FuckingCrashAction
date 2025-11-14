@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "FCACharacter.generated.h"
 
 
@@ -25,8 +27,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Input")
 	UInputMappingContext* IMC_Default = nullptr; // 输入映射表（把具体键位映射到 UInputAction）
 	
-	UPROPERTY(EditDefaultsOnly, Category="Input") UInputAction* IA_Move;
-	UPROPERTY(EditDefaultsOnly, Category="Input") UInputAction* IA_Look;
+	UPROPERTY(EditDefaultsOnly, Category="Input") TObjectPtr<UInputAction> IA_Move;
+	UPROPERTY(EditDefaultsOnly, Category="Input") TObjectPtr<UInputAction> IA_Look;
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera", meta=(AllowPrivateAccess="true")) TObjectPtr<USpringArmComponent> SpringArm;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera", meta=(AllowPrivateAccess="true")) TObjectPtr<UCameraComponent> FollowCamera;
 	
 	
 	// Called to bind functionality to input
@@ -40,6 +46,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void BP_OnLook(const FVector2D& Value); 
 
+
+	//--------------速度设置--------------
+	
 private:
 	// 把 IMC 添加到本地玩家的 EnhancedInput 子系统（单机本地也需要）
 	void AddMappingContext_ForLocalPlayer();

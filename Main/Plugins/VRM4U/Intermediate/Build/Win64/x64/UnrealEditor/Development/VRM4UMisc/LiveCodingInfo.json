@@ -2,8 +2,8 @@
 	"RemapUnityFiles": 
 	{
 		"Module.VRM4UMisc.cpp.obj": [
-			"VRM4UMisc.cpp.obj",
-			"PerModuleInline.gen.cpp.obj"
+			"PerModuleInline.gen.cpp.obj",
+			"VRM4UMisc.cpp.obj"
 		]
 	}
 }
