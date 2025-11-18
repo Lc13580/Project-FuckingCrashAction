@@ -5,12 +5,31 @@
 #include "EnhancedInputComponent.h"               
 #include "EnhancedInputSubsystems.h" 
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PlayerState.h"
 #include "HAL/PreprocessorHelpers.h"
 
 
 // Sets default values
 AFCACharacter::AFCACharacter()
 {
+	//GAS
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	APlayerState* PS = GetPlayerState();
+	if (PS)
+	{
+		UAbilitySystemComponent* ASC = PS->FindComponentByClass<UAbilitySystemComponent>();
+		if (ASC)
+		{
+			ASC->InitAbilityActorInfo(PS, this); // Owner = PlayerState, Avatar = Character
+			UE_LOG(LogTemp, Warning, TEXT("InitAbilityActorInfo success"));
+		}
+	}
+
+	if (PS == nullptr)
+		UE_LOG(LogTemp, Warning, TEXT("PlayerState is nullptr"));
+
+	
+	
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
@@ -55,7 +74,7 @@ AFCACharacter::AFCACharacter()
 	if (FollowCamera)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("FollowCamera Founded"));
-		FollowCamera->bUsePawnControlRotation = true;
+		FollowCamera->bUsePawnControlRotation = false;
 	}
 }
 
@@ -63,6 +82,20 @@ void AFCACharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	AddMappingContext_ForLocalPlayer();
+}
+
+void AFCACharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (!AbilitySystemComponent) return;
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
+
+UAbilitySystemComponent* AFCACharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
 void AFCACharacter::AddMappingContext_ForLocalPlayer()
@@ -100,6 +133,7 @@ void AFCACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 		// 连续型输入（摇杆/WSAD）用 Triggered，按键按住每帧触发
 		if (IA_Move) EIC->BindAction(IA_Move, ETriggerEvent::Triggered, this, &AFCACharacter::OnMove);
 		if (IA_Look) EIC->BindAction(IA_Look, ETriggerEvent::Triggered, this, &AFCACharacter::OnLook);
+		if (IA_Dodge) EIC->BindAction(IA_Dodge, ETriggerEvent::Triggered, this, &AFCACharacter::OnDodge);
 
 		// 离散型输入（按一下）用 Started；也可按需要用 Completed/Triggered
 		//if (IA_Jump) EIC->BindAction(IA_Jump, ETriggerEvent::Started,   this, &AMyCharacter::OnJumpPressed);
@@ -112,6 +146,9 @@ void AFCACharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 }
 
 
+
+
+//移动的回调函数处理
 void AFCACharacter::OnLook(const FInputActionValue& Val)
 {
 	const FVector2D Axis = Val.Get<FVector2D>();
@@ -131,6 +168,18 @@ void AFCACharacter::OnLook(const FInputActionValue& Val)
 	BP_OnLook(Axis);
 }
 
+void AFCACharacter::OnDodge(const FInputActionValue& Val)
+{
+	if (this->AbilitySystemComponent)
+	{
+		FGameplayTagContainer DodgeTags;
+		DodgeTags.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability.Dodge")));
+		this->AbilitySystemComponent->TryActivateAbilitiesByTag(DodgeTags);
+	}
+	
+	UE_LOG(LogTemp, Warning, TEXT("Debug:OnDodge: Dodge Success!!"));
+}
+
 
 void AFCACharacter::OnMove(const FInputActionValue& Val)
 {
@@ -139,23 +188,46 @@ void AFCACharacter::OnMove(const FInputActionValue& Val)
 
 	// —— C++：做“实质的位移”或设置 CharacterMovement —— 
 	// 单机项目通常直接移动（示例：相对当前朝向前后/左右）
-	if (Controller)
+	// if (Controller)
+	// {
+	// 	//UE_LOG(LogTemp, Warning, TEXT("OnMove executed. Axis.x = %f, Axis.y = %f"), Axis.X, Axis.Y);
+	//
+	// 	
+	// 	// if (Axis.Y != 0.f)
+	// 	// {
+	// 	// 	const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+	// 	// 	//todo AddMovementInput 这里我觉得ScaleValue直接给了Axis没有标准化的值是导致滑步的重要原因，需要排查
+	// 	// 	AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::X), Axis.Y);
+	// 	// }
+	// 	// if (Axis.X != 0.f)
+	// 	// {
+	// 	// 	const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+	// 	// 	AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y), Axis.X);
+	// 	// }
+	// }
+
+	if (!Controller)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("OnMove executed. Axis.x = %f, Axis.y = %f"), Axis.X, Axis.Y);
+		return;
+	}
 
-		
-		if (Axis.Y != 0.f)
-		{
-			const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
+	// Blueprint: GetControlRotation → 只用 Yaw，Pitch 置 0
+	const FRotator ControlRot = Controller->GetControlRotation();
+	const FRotator YawRot(0.f, ControlRot.Yaw, 0.f);
 
-			//todo AddMovementInput 这里我觉得ScaleValue直接给了Axis没有标准化的值是导致滑步的重要原因，需要排查
-			AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::X), Axis.Y);
-		}
-		if (Axis.X != 0.f)
-		{
-			const FRotator YawRot(0.f, Controller->GetControlRotation().Yaw, 0.f);
-			AddMovementInput(FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y), Axis.X);
-		}
+	// Blueprint: GetForwardVector / GetRightVector
+	const FVector ForwardDir = FRotationMatrix(YawRot).GetUnitAxis(EAxis::X);
+	const FVector RightDir   = FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y);
+
+	// Blueprint: AddMovementInput(Forward / Right, ScaleValue)
+	if (Axis.Y != 0.f)
+	{
+		AddMovementInput(ForwardDir, Axis.Y);   // Forward / Backward
+	}
+
+	if (Axis.X != 0.f)
+	{
+		AddMovementInput(RightDir, Axis.X);     // Left / Right
 	}
 
 	//实际移动打算交给动画蓝图里面的Lyra系统处理
