@@ -235,7 +235,7 @@ void UPAHeroComponent::InitializePlayerInput(UInputComponent* PlayerInputCompone
 				}
 
 				UPAInputComponent* PAIC = Cast<UPAInputComponent>(PlayerInputComponent);
-				if (ensure(PAIC, TEXT("Unexpected Input Component class! The Gameplay Abilities will not be bound to their inputs. Change the input component to UPAInputComponent or a subclass of it.")))
+				if (ensureMsgf(PAIC, TEXT("Unexpected Input Component class! The Gameplay Abilities will not be bound to their inputs. Change the input component to UPAInputComponent or a subclass of it.")))
 				{
 					PAIC->AddInputMapping(InputConfig, Subsystem);
 
