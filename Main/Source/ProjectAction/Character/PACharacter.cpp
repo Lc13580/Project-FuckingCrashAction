@@ -3,29 +3,32 @@
 
 #include "Character/PACharacter.h"
 
+#include "PACharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 
 static FName NAME_PACharacterCollisionProfile_Capsule(TEXT("PAPawnCapsule"));
 static FName NAME_PACharacterCollisionProfile_Pawn(TEXT("PAPawn"));
 
-APACharacter::APACharacter(const FObjectInitializer& ObjectInitializer)
+APACharacter::APACharacter(const FObjectInitializer& ObjectInitializer):Super(ObjectInitializer.SetDefaultSubobjectClass<UPACharacterMovementComponent>(APACharacter::CharacterMovementComponentName))
 {
 	// Avoid ticking characters if possible.
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
-	UCapsuleComponent* CapComponent = GetComponentByClass<UCapsuleComponent>();
-	check(CapComponent);
-	CapComponent->InitCapsuleSize(40, 90);
-	//这里使用编辑器的预设，先注释掉
-	//CapsuleComponent->SetCollisionProfileName(NAME_PACharacterCollisionProfile_Capsule);
-
-	USkeletalMeshComponent* SkeletalMesh = GetMesh();
-	check(SkeletalMesh);
-	SkeletalMesh->SetRelativeRotation(FRotator(0,-90,0));
-	//CapsuleComponent->SetCollisionProfileName(NAME_PACharacterCollisionProfile_Pawn);
 	
-	PawnExtComponent->CreateDefaultSubobject<UPAPawnExtensionComponent>(TEXT("PawnExtensionComponent"));
+	
+	UCapsuleComponent* CapComponent = GetCapsuleComponent();
+	check(CapComponent);
+	//  CapComponent->InitCapsuleSize(40, 90);
+	// 这里使用编辑器的预设，先注释掉
+	// CapsuleComponent->SetCollisionProfileName(NAME_PACharacterCollisionProfile_Capsule);
+
+	 USkeletalMeshComponent* SkeletalMesh = GetMesh();
+	 check(SkeletalMesh);
+	 SkeletalMesh->SetRelativeRotation(FRotator(0,-90,0));
+	 //CapsuleComponent->SetCollisionProfileName(NAME_PACharacterCollisionProfile_Pawn);
+	
+	PawnExtComponent = CreateDefaultSubobject<UPAPawnExtensionComponent>(TEXT("PawnExtensionComponent"));
 	check(PawnExtComponent);
 
 	//todo PawnExtCompoent加ASC

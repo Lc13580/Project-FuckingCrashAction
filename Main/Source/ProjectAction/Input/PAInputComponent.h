@@ -24,7 +24,6 @@ public:
 
 	//正常Lyra框架这里会给一些InputMapping的自定义逻辑，如AddNative/AbilityInputMapping, 但是这里不写，用不上
 	//void AddNativeAbilityInputMapping(...)
-	//void AddAbilityInputMapping(...)
 
 	void RemoveBinds(TArray<uint32>& BindHandles);
 
@@ -64,4 +63,6 @@ public:
 			}
 		}
 	}
+
+	void AddInputMapping(const UPAInputConfig* InputConfig, UEnhancedInputLocalPlayerSubsystem* Subsystem);
 };

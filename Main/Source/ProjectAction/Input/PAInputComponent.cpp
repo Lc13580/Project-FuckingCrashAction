@@ -15,3 +15,12 @@ void UPAInputComponent::RemoveBinds(TArray<uint32>& BindHandles)
 	}
 	BindHandles.Reset();
 }
+
+void UPAInputComponent::AddInputMapping(const UPAInputConfig* InputConfig,
+	UEnhancedInputLocalPlayerSubsystem* Subsystem)
+{
+	check(InputConfig);
+	check(Subsystem);
+
+	//仿Lyra去执行AddInputMapping
+}

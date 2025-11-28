@@ -14,7 +14,8 @@
 				"UMG",
 				"EnhancedInput",
 				"ModularGameplayActors",
-				"ModularGameplay"
+				"ModularGameplay",
+				"GameFeatures"
 			]
 		}
 	],
